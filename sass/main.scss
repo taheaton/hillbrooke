@@ -1,0 +1,41 @@
+// Put any @imports here
+// See Readme for a list of supported ones
+@import "foundation";
+
+//green
+$accent-color1: #196534;
+//tan
+$accent-color2: #EEE8CD;
+$accent-color3: black;
+//light blue
+$accent-color4: #e2ebf3;
+
+$font-title: 'Play', sans-serif;
+$font-content: 'Slabo', serif;
+$font-fun: 'Source Code Pro';
+$font-movie: 'Fascinate', serif;
+
+html {
+  font-family: Arial, Helvetica;
+}
+body {
+  background: $accent-color2;
+}
+
+//layout
+.top-bar {
+  background: $accent-color1;
+  height: 97px;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: $accent-color1;
+  height: 97px;
+  padding-top: 25px;
+}
+.hBird img{
+  height: 97px;
+}
+.hText {
+  margin-right: 313px;
+  height: 97px;
+}
