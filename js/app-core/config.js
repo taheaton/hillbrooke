@@ -10,26 +10,33 @@ let config = function($stateProvider, $urlRouterProvider) {
     // manage our layout that will be on all child states
     .state('root', {
       abstract: true,
-      templateUrl: 'templates/layout.tpl.html'
+      templateUrl: 'templates/app-layout/layout.tpl.html'
     })
     // Home State
     .state('root.home', {
       url: '/',
       // Use Controller as Syntax
       controller: 'HomeController as vm',
-      templateUrl: 'templates/home.tpl.html'
+      templateUrl: 'templates/app-layout/home.tpl.html'
     })
     // My Cars
-    .state('root.cars', {
-      url: '/cars',
-      controller: 'CarsController as vm',
-      templateUrl: 'templates/cars.tpl.html'
+    .state('root.content', {
+      url: '/content',
+      controller: 'ContentController as vm',
+      templateUrl: 'templates/app-cars/content.tpl.html'
     })
-    // Add Car
-    .state('root.addCar', {
-      url: '/cars/add',
-      controller: 'CarsAddController as vm',
-      templateUrl: 'templates/cars-add.tpl.html'
+
+    // Signup
+    .state('root.signup', {
+      url: '/signup',
+      controller: 'SignupController as vm',
+      templateUrl: 'templates/app-user/signup.tpl.html'
+    })
+    // Login
+    .state('root.login', {
+      url: '/login',
+      controller: 'LoginController as vm',
+      templateUrl: 'templates/app-user/login.tpl.html'
     });
 };
 

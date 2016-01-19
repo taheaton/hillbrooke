@@ -1,0 +1,18 @@
+<div class="home">
+  <h3>{{ vm.title }}</h3>
+
+  <p>Welcome to the Hillbrooke Community website!</p>
+
+
+
+  <p>Hillbrooke is a very special community located in <a href = "http://www.johnscreekga.gov/Home.aspx">Johns Creek, GA,</a> voted as the 2015 <a href = "http://www.usatoday.com/story/money/business/2015/11/05/24-7-wall-st-best-cities-to-live-in/75177096/">#3 Best City to live in Atlanta</a> by USA Today.  We think Hillbrooke is especially unique due to our warm and friendly neighbors.  In a time when families seem constantly on the move, Hillbrooke has enjoyed uncommon stability.  Many of our neighbors are on their second (some are on their third!) houses in the neighborhood.  Once you're here, you don't want to leave!</p>
+  <p>We think it has something to do with the way our 'personality' has earned us quite a reputation in the community.  From our famous <a href="http://www.11alive.com/story/news/local/2014/12/16/atlantas-top-neighborhoods-for-christmas-lights/20492875/">Christmas displays</a> to our (in)famous neighborhood crawfish boil, the Hillbrooke lifestyle is contagious!  We also have a seemingly endless number of kids' activities and a very active swim and tennis community.</p>
+  <p>Thanks for stopping by our site and if you're a resident, please like us on <a href = "https://www.facebook.com/groups/337111652985682/">Facebook.</a>
+  </p>
+
+  <img bg-image class="fullBg" ng-repeat="slide in slides"
+    ng-if="isCurrentSlideIndex($index)"
+    ng-src="{{slide.src}}">
+</div>
+
+    

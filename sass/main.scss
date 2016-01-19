@@ -16,26 +16,89 @@ $font-fun: 'Source Code Pro';
 $font-movie: 'Fascinate', serif;
 
 html {
-  font-family: Arial, Helvetica;
+  font-family: 'Lora', serif;
 }
 body {
   background: $accent-color2;
 }
 
 //layout
-.top-bar {
-  background: $accent-color1;
-  height: 97px;
+  //top nav
+  .top-bar {
+    background: $accent-color1;
+    height: 6.5rem;
+
+  }
+  .top-bar-section li:not(.has-form) a:not(.button) {
+    background: $accent-color1;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    max-width: 9.2rem;
+    vertical-align: middle;
+    border-radius: 1.5rem;
+    border:  0.1rem solid $accent-color2;
+    margin-top: 1.75rem;
+    margin-right: 1.875rem;
+  }
+  .top-bar-section ul li {
+      background: $accent-color1;
+  }
+  .hBird img{
+    height: 6.5rem;
+  }
+  .hText {
+    margin-right: 1rem;
+    height: 6.5rem;
+    float: left;
+  }
+  //side nav
+  .side-nav {
+    display: block;
+    font-family: 'Lora', serif;
+    list-style-position: outside;
+    list-style-type: none;
+    margin: 0.625rem;
+    padding: 0.875rem 0;
+    border: 0.25rem solid $accent-color1;
+    border-radius: 1.5rem;
+    width: 9rem;
+    background: white;
+    position: fixed;
+
 }
-.top-bar-section li:not(.has-form) a:not(.button) {
-  background: $accent-color1;
-  height: 97px;
-  padding-top: 25px;
+  .side-nav li a:not(.button) {
+    color: #008CBA;
+    display: inline-block;
+    margin: 0;
+    padding: 0.4375rem 0.875rem;
+    color: $accent-color1;
+    width: 9rem;
 }
-.hBird img{
-  height: 97px;
+.side-nav li.active > a:first-child:not(.button) {
+    color: red;
+    font-family: 'Lora', serif;    
+    font-weight: normal;
 }
-.hText {
-  margin-right: 313px;
-  height: 97px;
-}
+//home template
+  .home{
+    display: inline-block;
+    margin-left: 13rem;
+    margin-top: 1rem;
+    font-family: 'Lora', serif;
+    margin-right: 3rem;
+  }
+  .home h3{
+    font-family: 'Lora', serif;
+  }
+  //login template
+  .login{
+    display: inline-block;
+    margin-left: 13rem;
+    margin-top: 1rem;
+  }
+    //signup template
+  .signup{
+    display: inline-block;
+    margin-left: 13rem;
+    margin-top: 1rem;
+  }

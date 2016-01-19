@@ -6388,25 +6388,81 @@ th.hide-for-touch {
     display: table-cell !important; } }
 
 html {
-  font-family: Arial, Helvetica; }
+  font-family: 'Lora', serif; }
 
 body {
   background: #EEE8CD; }
 
 .top-bar {
   background: #196534;
-  height: 97px; }
+  height: 6.5rem; }
 
 .top-bar-section li:not(.has-form) a:not(.button) {
   background: #196534;
-  height: 97px;
-  padding-top: 25px; }
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  max-width: 9.2rem;
+  vertical-align: middle;
+  border-radius: 1.5rem;
+  border: 0.1rem solid #EEE8CD;
+  margin-top: 1.75rem;
+  margin-right: 1.875rem; }
+
+.top-bar-section ul li {
+  background: #196534; }
 
 .hBird img {
-  height: 97px; }
+  height: 6.5rem; }
 
 .hText {
-  margin-right: 313px;
-  height: 97px; }
+  margin-right: 1rem;
+  height: 6.5rem;
+  float: left; }
+
+.side-nav {
+  display: block;
+  font-family: 'Lora', serif;
+  list-style-position: outside;
+  list-style-type: none;
+  margin: 0.625rem;
+  padding: 0.875rem 0;
+  border: 0.25rem solid #196534;
+  border-radius: 1.5rem;
+  width: 9rem;
+  background: white;
+  position: fixed; }
+
+.side-nav li a:not(.button) {
+  color: #008CBA;
+  display: inline-block;
+  margin: 0;
+  padding: 0.4375rem 0.875rem;
+  color: #196534;
+  width: 9rem; }
+
+.side-nav li.active > a:first-child:not(.button) {
+  color: red;
+  font-family: 'Lora', serif;
+  font-weight: normal; }
+
+.home {
+  display: inline-block;
+  margin-left: 13rem;
+  margin-top: 1rem;
+  font-family: 'Lora', serif;
+  margin-right: 3rem; }
+
+.home h3 {
+  font-family: 'Lora', serif; }
+
+.login {
+  display: inline-block;
+  margin-left: 13rem;
+  margin-top: 1rem; }
+
+.signup {
+  display: inline-block;
+  margin-left: 13rem;
+  margin-top: 1rem; }
 
 /*# sourceMappingURL=main.css.map */
