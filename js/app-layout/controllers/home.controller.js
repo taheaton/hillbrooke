@@ -1,4 +1,4 @@
-let HomeController = function(PARSE, $scope, $timeout, PictureService) {
+let HomeController = function(PARSE, $scope, $timeout, $cookies) {
 
   console.log(PARSE);
 
@@ -6,13 +6,18 @@ let HomeController = function(PARSE, $scope, $timeout, PictureService) {
   
   vm.title = 'Home Page';
 
-  vm.addPicture = addPicture;
 
-  function addPicture (pictureObj) {
-    PictureService.addPicture(pictureObj).then( (res) => {
-      console.log(res);
-    });
-  };
+  let user = ($cookies.get('hillbrooke-name')) ? $cookies.get('hillbrooke-name') : 'Guest';
+  vm.user = user;
+  console.log(user);
+
+  // vm.addPicture = addPicture;
+
+  // function addPicture (pictureObj) {
+  //   PictureService.addPicture(pictureObj).then( (res) => {
+  //     console.log(res);
+  //   });
+  //};
 
 
   var INTERVAL = 6000,
@@ -36,6 +41,8 @@ let HomeController = function(PARSE, $scope, $timeout, PictureService) {
         $timeout(nextSlide, INTERVAL);
     }
 
+
+
     function loadSlides() {
         $timeout(nextSlide, INTERVAL);
     }
@@ -47,6 +54,6 @@ let HomeController = function(PARSE, $scope, $timeout, PictureService) {
 
     loadSlides();
 };
-HomeController.$inject = ['PARSE', '$scope', '$timeout', 'PictureService'];
+HomeController.$inject = ['PARSE', '$scope', '$timeout', '$cookies'];
 
 export default HomeController;

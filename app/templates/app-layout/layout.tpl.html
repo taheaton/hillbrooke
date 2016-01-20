@@ -8,9 +8,13 @@
   <section class="top-bar-section">
     <ul class="right">
       <li class = "hText">
-      <img src = "images/HillbrookeLoginText.jpg">
-    </li>
-      <li><a href="#/login">Residents Only</a></li>
+        <h2>Hillbrooke</h2>
+      </li>
+      <li>
+        <a ng-if = "vm.user != 'Guest'" href = "#/content">Residents Only</a>
+        <a ng-if = "vm.user === 'Guest'" href = "#/login">Residents Only</a>
+      </li>
+      
       <li><a href="#/signup">Request Access</a></li>
     </ul>
   </section>
@@ -23,6 +27,8 @@
 
   <li><a href="http://school.fultonschools.org/ms/taylorroad/Pages/default.aspx">Taylor Road Middle</a></li>
   <li><a href="http://school.fultonschools.org/hs/chattahoochee/Pages/default.aspx">Chattahoochee High</a></li>
+  <li class="divider"></li>
+  <li><a href="http://www.johnscreekga.gov/Home.aspx">Johns Creek, GA</a></li>
 </ul>
 
 

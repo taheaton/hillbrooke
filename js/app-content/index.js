@@ -1,11 +1,11 @@
 import angular from 'angular';
 import '../app-core/index';
 
-// import CarsController from './controllers/cars.controller';
+ import ContentController from './controllers/content.controller';
 // import CarsAddController from './controllers/cars-add.controller';
 // import CarSingleController from './controllers/car-single.controller';
 
-// import CarService from './services/car.service';
+ import ContentService from './services/content.service';
 // import UploadService from './services/upload.service';
 // import MainService from './services/maintenance.service';
 
@@ -14,10 +14,10 @@ import '../app-core/index';
 
 angular
   .module('app.content', ['app.core'])
-  // .controller('CarsController', CarsController)
+   .controller('ContentController', ContentController)
   // .controller('CarsAddController', CarsAddController)
   // .controller('CarSingleController', CarSingleController)
-  // .service('CarService', CarService)
+   .service('ContentService', ContentService)
   // .service('UploadService', UploadService)
   // .service('MainService', MainService)
   // .directive('carItem', carItem)

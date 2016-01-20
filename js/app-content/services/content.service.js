@@ -1,15 +1,15 @@
 let ContentService = function($http, PARSE, $cookies) {
   
-//   let url = PARSE.URL + 'classes/car';
+   let url = PARSE.URL + 'users';
 
-//   this.getAllCars   = getAllCars;
+//   this.getAllContent   = getAllContent;
 //   this.addCar       = addCar;
 //   this.destroy      = destroy;
 //   this.toggleFuzzy  = toggleFuzzy;
 //   this.getCar       = getCar;
 //   this.addImage     = addImage;
 
-//   function Car (carObj) {
+ //  function Content (content) {
 //     this.make = carObj.make;
 //     this.model = carObj.model;
 //     this.year = Number(carObj.year);
@@ -17,7 +17,7 @@ let ContentService = function($http, PARSE, $cookies) {
 //     this.color = carObj.color;
 //     this.fuzzydice = true;
 //     this.image = carObj.image;
-//   }
+ // }
 
 //   function toggleFuzzy (carObj) {
 //     carObj.fuzzydice = carObj.fuzzydice ? false : true;
@@ -62,7 +62,7 @@ let ContentService = function($http, PARSE, $cookies) {
 //     return console.log(name + ' has been destroyed');
 //   }
 
-// };
+ };
 
 ContentService.$inject = ['$http', 'PARSE', '$cookies'];
 

@@ -6387,9 +6387,6 @@ th.hide-for-touch {
   th.show-for-print {
     display: table-cell !important; } }
 
-html {
-  font-family: 'Lora', serif; }
-
 body {
   background: #EEE8CD; }
 
@@ -6399,7 +6396,7 @@ body {
 
 .top-bar-section li:not(.has-form) a:not(.button) {
   background: #196534;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   font-size: 1rem;
   max-width: 9.2rem;
   vertical-align: middle;
@@ -6414,14 +6411,17 @@ body {
 .hBird img {
   height: 6.5rem; }
 
-.hText {
-  margin-right: 1rem;
-  height: 6.5rem;
-  float: left; }
+.hText h2 {
+  margin-right: 25rem;
+  height: 5.8rem;
+  color: white;
+  font-family: "Droid Serif", serif;
+  float: left;
+  font-size: 48pt; }
 
 .side-nav {
   display: block;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   list-style-position: outside;
   list-style-type: none;
   margin: 0.625rem;
@@ -6442,18 +6442,18 @@ body {
 
 .side-nav li.active > a:first-child:not(.button) {
   color: red;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   font-weight: normal; }
 
 .home {
   display: inline-block;
   margin-left: 13rem;
   margin-top: 1rem;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   margin-right: 3rem; }
 
 .home h3 {
-  font-family: 'Lora', serif; }
+  font-family: "Lora", serif; }
 
 .login {
   display: inline-block;
@@ -6464,5 +6464,12 @@ body {
   display: inline-block;
   margin-left: 13rem;
   margin-top: 1rem; }
+
+.content h2 {
+  display: inline-block;
+  margin-left: 13rem;
+  margin-top: 1rem;
+  font-size: 36pt;
+  font-family: "Lora", serif; }
 
 /*# sourceMappingURL=main.css.map */

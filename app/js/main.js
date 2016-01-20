@@ -1,6 +1,40 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var ContentController = function ContentController(ContentService, $cookies) {
+
+  var vm = this;
+  var user = $cookies.get('hillbrooke-name');
+  vm.user = user;
+  console.log(user);
+
+  //   vm.content = [];
+  //   vm.clicked = clicked;
+
+  //   activate();
+
+  //   function activate () {
+  //     Service.getAllContent().then( (res) => {
+  //       vm.content = res.data.results;
+  //     });
+  //   }
+
+  //   function clicked (content) {
+  //     console.log('clicked', content.name);
+  //   }
+};
+
+ContentController.$inject = ['ContentService', '$cookies'];
+
+exports['default'] = ContentController;
+module.exports = exports['default'];
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _angular = require('angular');
@@ -9,29 +43,110 @@ var _angular2 = _interopRequireDefault(_angular);
 
 require('../app-core/index');
 
-// import CarsController from './controllers/cars.controller';
+var _controllersContentController = require('./controllers/content.controller');
+
+var _controllersContentController2 = _interopRequireDefault(_controllersContentController);
+
 // import CarsAddController from './controllers/cars-add.controller';
 // import CarSingleController from './controllers/car-single.controller';
 
-// import CarService from './services/car.service';
+var _servicesContentService = require('./services/content.service');
+
+var _servicesContentService2 = _interopRequireDefault(_servicesContentService);
+
 // import UploadService from './services/upload.service';
 // import MainService from './services/maintenance.service';
 
 // import carItem from './directives/car.directive';
 // import addImage from './directives/addImage.directive';
 
-_angular2['default'].module('app.content', ['app.core']);
-
-// .controller('CarsController', CarsController)
+_angular2['default'].module('app.content', ['app.core']).controller('ContentController', _controllersContentController2['default'])
 // .controller('CarsAddController', CarsAddController)
 // .controller('CarSingleController', CarSingleController)
-// .service('CarService', CarService)
+.service('ContentService', _servicesContentService2['default']);
+
 // .service('UploadService', UploadService)
 // .service('MainService', MainService)
 // .directive('carItem', carItem)
 // .directive('addImage', addImage)
 
-},{"../app-core/index":4,"angular":16}],2:[function(require,module,exports){
+},{"../app-core/index":6,"./controllers/content.controller":1,"./services/content.service":3,"angular":18}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var ContentService = function ContentService($http, PARSE, $cookies) {
+
+  var url = PARSE.URL + 'users';
+
+  //   this.getAllContent   = getAllContent;
+  //   this.addCar       = addCar;
+  //   this.destroy      = destroy;
+  //   this.toggleFuzzy  = toggleFuzzy;
+  //   this.getCar       = getCar;
+  //   this.addImage     = addImage;
+
+  //  function Content (content) {
+  //     this.make = carObj.make;
+  //     this.model = carObj.model;
+  //     this.year = Number(carObj.year);
+  //     this.name = carObj.name;
+  //     this.color = carObj.color;
+  //     this.fuzzydice = true;
+  //     this.image = carObj.image;
+  // }
+
+  //   function toggleFuzzy (carObj) {
+  //     carObj.fuzzydice = carObj.fuzzydice ? false : true;
+  //     return $http.put(url + '/' + carObj.objectId, carObj, PARSE.CONFIG);
+  //   }
+
+  //   function getAllCars () {
+  //     return $http.get(url, PARSE.CONFIG);
+  //   }
+
+  //   function getCar (id) {
+  //     return $http.get(url + '/' + id, PARSE.CONFIG);
+  //   }
+
+  //   function addCar (carObj) {
+  //     let userId = $cookies.get('car-tracker-user');
+  //     let c = new Car(carObj);
+
+  //     let ACLObj = {};
+  //     ACLObj[userId] = {
+  //       read: true,
+  //       write: true
+  //     };
+
+  //     c.ACL = ACLObj;
+
+  //     c.user = {
+  //       __type: 'Pointer',
+  //       className: '_User',
+  //       objectId: userId
+  //     };
+
+  //     return $http.post(url, c, PARSE.CONFIG);
+  //   }
+
+  //   function addImage (imageUrl, car) {
+  //     car.image = imageUrl;
+  //     return $http.put(url + '/' + car.objectId, car, PARSE.CONFIG);
+  //   }
+
+  //   function destroy (name) {
+  //     return console.log(name + ' has been destroyed');
+  //   }
+};
+
+ContentService.$inject = ['$http', 'PARSE', '$cookies'];
+
+exports['default'] = ContentService;
+module.exports = exports['default'];
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -49,7 +164,8 @@ var config = function config($stateProvider, $urlRouterProvider) {
   // manage our layout that will be on all child states
   .state('root', {
     abstract: true,
-    templateUrl: 'templates/app-layout/layout.tpl.html'
+    templateUrl: 'templates/app-layout/layout.tpl.html',
+    controller: 'HomeController as vm'
   })
   // Home State
   .state('root.home', {
@@ -62,7 +178,7 @@ var config = function config($stateProvider, $urlRouterProvider) {
   .state('root.content', {
     url: '/content',
     controller: 'ContentController as vm',
-    templateUrl: 'templates/app-cars/content.tpl.html'
+    templateUrl: 'templates/app-content/content.tpl.html'
   })
 
   // Signup
@@ -84,7 +200,7 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 exports['default'] = config;
 module.exports = exports['default'];
 
-},{}],3:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -101,7 +217,7 @@ exports['default'] = {
 };
 module.exports = exports['default'];
 
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -128,7 +244,7 @@ var _constantsParseConstant2 = _interopRequireDefault(_constantsParseConstant);
 
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('PARSE', _constantsParseConstant2['default']).run(_run2['default']);
 
-},{"./config":2,"./constants/parse.constant":3,"./run":5,"angular":16,"angular-cookies":18,"angular-ui-router":14}],5:[function(require,module,exports){
+},{"./config":4,"./constants/parse.constant":5,"./run":7,"angular":18,"angular-cookies":20,"angular-ui-router":16}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -146,13 +262,13 @@ run.$inject = ['UserService', '$rootScope'];
 exports['default'] = run;
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
-"use strict";
+},{}],8:[function(require,module,exports){
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
-var HomeController = function HomeController(PARSE, $scope, $timeout, PictureService) {
+var HomeController = function HomeController(PARSE, $scope, $timeout, $cookies) {
 
     console.log(PARSE);
 
@@ -160,13 +276,17 @@ var HomeController = function HomeController(PARSE, $scope, $timeout, PictureSer
 
     vm.title = 'Home Page';
 
-    vm.addPicture = addPicture;
+    var user = $cookies.get('hillbrooke-name') ? $cookies.get('hillbrooke-name') : 'Guest';
+    vm.user = user;
+    console.log(user);
 
-    function addPicture(pictureObj) {
-        PictureService.addPicture(pictureObj).then(function (res) {
-            console.log(res);
-        });
-    };
+    // vm.addPicture = addPicture;
+
+    // function addPicture (pictureObj) {
+    //   PictureService.addPicture(pictureObj).then( (res) => {
+    //     console.log(res);
+    //   });
+    //};
 
     var INTERVAL = 6000,
         slides = [{ id: "image00", src: "./images/cover.jpg" }, { id: "image01", src: "./images/kids.jpg" }, { id: "image02", src: "./images/party.jpg" }, { id: "image03", src: "./images/sign.jpg" }, { id: "image04", src: "./images/swimteam.jpg" }, { id: "image05", src: "./images/tennis.jpg" }];
@@ -195,12 +315,12 @@ var HomeController = function HomeController(PARSE, $scope, $timeout, PictureSer
 
     loadSlides();
 };
-HomeController.$inject = ['PARSE', '$scope', '$timeout', 'PictureService'];
+HomeController.$inject = ['PARSE', '$scope', '$timeout', '$cookies'];
 
-exports["default"] = HomeController;
-module.exports = exports["default"];
+exports['default'] = HomeController;
+module.exports = exports['default'];
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -219,7 +339,7 @@ var _servicesPictureService2 = _interopRequireDefault(_servicesPictureService);
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']).service('PictureService', _servicesPictureService2['default']);
 
-},{"./controllers/home.controller":6,"./services/picture.service":8,"angular":16}],8:[function(require,module,exports){
+},{"./controllers/home.controller":8,"./services/picture.service":10,"angular":18}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -253,7 +373,7 @@ PictureService.$inject = ['$http', 'PARSE'];
 exports['default'] = PictureService;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -277,7 +397,7 @@ LoginController.$inject = ['UserService'];
 exports['default'] = LoginController;
 module.exports = exports['default'];
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -301,7 +421,7 @@ SignupController.$inject = ['UserService'];
 exports['default'] = SignupController;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -324,7 +444,7 @@ var _servicesUserService2 = _interopRequireDefault(_servicesUserService);
 
 _angular2['default'].module('app.user', ['app.core']).controller('SignupController', _controllersSignupController2['default']).controller('LoginController', _controllersLoginController2['default']).service('UserService', _servicesUserService2['default']);
 
-},{"./controllers/login.controller":9,"./controllers/signup.controller":10,"./services/user.service":12,"angular":16}],12:[function(require,module,exports){
+},{"./controllers/login.controller":11,"./controllers/signup.controller":12,"./services/user.service":14,"angular":18}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -340,11 +460,14 @@ var UserService = function UserService(PARSE, $http, $cookies, $state) {
   function storeAuth(user) {
     $cookies.put('hillbrooke-auth', user.sessionToken);
     $cookies.put('hillbrooke-user', user.objectId);
+    $cookies.put('hillbrooke-name', user.username);
+    $cookies.put('hillbrooke-email', user.email);
+
     setHeaders(user.sessionToken);
     // THIS REALLY NEEDS TO BE BETTER!!!
     alert('you are now logged in');
     // SERIOUSLY
-    $state.go('root.home');
+    $state.go('root.content');
   }
 
   function checkAuth() {
@@ -353,7 +476,7 @@ var UserService = function UserService(PARSE, $http, $cookies, $state) {
       setHeaders(t);
     }
     // else {
-    // //  alert('please check your login information on contact admin');
+    //  alert('please check your login information on contact admin');
     //   $state.go('root.home');
     // }
   }
@@ -379,7 +502,7 @@ UserService.$inject = ['PARSE', '$http', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 // Import our core files
 'use strict';
 
@@ -401,7 +524,7 @@ require('./app-user/index');
 
 _angular2['default'].module('app', ['app.core', 'app.layout', 'app.content', 'app.user']);
 
-},{"./app-content/index":1,"./app-core/index":4,"./app-layout/index":7,"./app-user/index":11,"angular":16}],14:[function(require,module,exports){
+},{"./app-content/index":2,"./app-core/index":6,"./app-layout/index":9,"./app-user/index":13,"angular":18}],16:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -4772,7 +4895,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -33791,11 +33914,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":15}],17:[function(require,module,exports){
+},{"./angular":17}],19:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -34118,11 +34241,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":17}]},{},[13])
+},{"./angular-cookies":19}]},{},[15])
 
 
 //# sourceMappingURL=main.js.map

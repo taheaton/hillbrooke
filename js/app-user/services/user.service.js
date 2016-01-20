@@ -8,11 +8,14 @@ let UserService = function(PARSE, $http, $cookies, $state) {
   function storeAuth (user) {
     $cookies.put('hillbrooke-auth', user.sessionToken);
     $cookies.put('hillbrooke-user', user.objectId);
+   $cookies.put('hillbrooke-name', user.username);
+   $cookies.put('hillbrooke-email', user.email);
+
     setHeaders(user.sessionToken);
     // THIS REALLY NEEDS TO BE BETTER!!!
     alert('you are now logged in');
     // SERIOUSLY
-    $state.go('root.home');
+    $state.go('root.content');
   }
 
   function checkAuth () {
@@ -20,10 +23,10 @@ let UserService = function(PARSE, $http, $cookies, $state) {
     if (t) {
       setHeaders(t);
     } 
-    // else {
-    // //  alert('please check your login information on contact admin');
-    //   $state.go('root.home');
-    // }
+     // else {
+     //  alert('please check your login information on contact admin');
+     //   $state.go('root.home');
+     // }
   }
 
   function setHeaders (token) {

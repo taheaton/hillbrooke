@@ -10,13 +10,11 @@ $accent-color3: black;
 //light blue
 $accent-color4: #e2ebf3;
 
-$font-title: 'Play', sans-serif;
-$font-content: 'Slabo', serif;
-$font-fun: 'Source Code Pro';
-$font-movie: 'Fascinate', serif;
+$font-title: 'Droid Serif', serif;
+$font-content: 'Lora', serif;
+
 
 html {
-  font-family: 'Lora', serif;
 }
 body {
   background: $accent-color2;
@@ -31,7 +29,7 @@ body {
   }
   .top-bar-section li:not(.has-form) a:not(.button) {
     background: $accent-color1;
-    font-family: 'Lora', serif;
+    font-family: $font-content;
     font-size: 1rem;
     max-width: 9.2rem;
     vertical-align: middle;
@@ -46,15 +44,18 @@ body {
   .hBird img{
     height: 6.5rem;
   }
-  .hText {
-    margin-right: 1rem;
-    height: 6.5rem;
+  .hText h2{
+    margin-right: 25rem;
+    height: 5.8rem;
+    color: white;
+    font-family: $font-title;
     float: left;
+    font-size: 48pt;
   }
   //side nav
   .side-nav {
     display: block;
-    font-family: 'Lora', serif;
+    font-family: $font-content;
     list-style-position: outside;
     list-style-type: none;
     margin: 0.625rem;
@@ -76,7 +77,7 @@ body {
 }
 .side-nav li.active > a:first-child:not(.button) {
     color: red;
-    font-family: 'Lora', serif;    
+    font-family: $font-content;   
     font-weight: normal;
 }
 //home template
@@ -84,12 +85,15 @@ body {
     display: inline-block;
     margin-left: 13rem;
     margin-top: 1rem;
-    font-family: 'Lora', serif;
+    font-family: $font-content;
     margin-right: 3rem;
   }
   .home h3{
-    font-family: 'Lora', serif;
+    font-family: $font-content;
   }
+
+ 
+
   //login template
   .login{
     display: inline-block;
@@ -101,4 +105,12 @@ body {
     display: inline-block;
     margin-left: 13rem;
     margin-top: 1rem;
+  }
+      //content template
+  .content h2{
+    display: inline-block;
+    margin-left: 13rem;
+    margin-top: 1rem;
+    font-size: 36pt;
+    font-family: $font-content;
   }

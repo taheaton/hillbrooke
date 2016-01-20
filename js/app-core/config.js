@@ -10,7 +10,8 @@ let config = function($stateProvider, $urlRouterProvider) {
     // manage our layout that will be on all child states
     .state('root', {
       abstract: true,
-      templateUrl: 'templates/app-layout/layout.tpl.html'
+      templateUrl: 'templates/app-layout/layout.tpl.html',
+      controller: 'HomeController as vm'
     })
     // Home State
     .state('root.home', {
@@ -23,7 +24,7 @@ let config = function($stateProvider, $urlRouterProvider) {
     .state('root.content', {
       url: '/content',
       controller: 'ContentController as vm',
-      templateUrl: 'templates/app-cars/content.tpl.html'
+      templateUrl: 'templates/app-content/content.tpl.html'
     })
 
     // Signup
