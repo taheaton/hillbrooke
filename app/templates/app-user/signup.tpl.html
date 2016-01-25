@@ -1,11 +1,34 @@
-<div class="signup">
-  <h3>{{ vm.title }}</h3>
+<div class = "signup"
 
-  <h2>The Signup page is currently under construction.  Please enjoy our other beautiful stuff.<br>
-  <a href = "#/home">Home</a>
-  </h2>
+<h3>If you are a Hillbrooke resident, please complete the following form.  Your information will be verified and access information will be emailed to you.</h3>
 
-  <img src = './images/undercon.jpeg';
+<hr>
 
+<form name = "myForm" ng-submit="vm.addContact(Contact)">
+  <input name="inputname" placeholder="Name"  ng-model="Contact.name" required>
+
+    <span class="error" ng-show="myForm.inputname.$error.required">{{ vm.messagename }}</span>
+    <span class="valid" ng-show="myForm.inputname.$valid">{{ vm.messagenameOK }}</span>
+
+  <input name="username" placeholder="Desired User Name"  ng-model="Contact.username">
+
+  <input name="password" placeholder="Desired Password"  ng-model="Contact.password" ng-minlength="6" required>
+
+    <span class="error" ng-show="myForm.inputpassword.$error.required">{{ vm.messagepassword }}</span>
+    <span class="valid" ng-show="myForm.inputpassword.$valid">{{ vm.messagepasswordOK }}</span>
+
+  <input name = "inputemail" type = "email" placeholder="Email" ng-model="Contact.email" required>
+
+    <span class="error" ng-show="myForm.inputemail.$error.required">{{ vm.messageemailOne }}</span>
+    <span class="error" ng-show="myForm.inputemail.$error.email">{{ vm.messageemailTwo }}</span>
+    <span class="valid" ng-show="myForm.inputemail.$valid">{{ vm.messageemailOK }}</span>
+
+  <input name = "inputaddress" placeholder="Street Address" ng-model="Contact.address" required>
+    <span class="error" ng-show="myForm.inputaddress.$error.required">{{ vm.messagewebOne }}</span>
+    <span class="error" ng-show="myForm.inputaddress.$error.url">{{ vm.messagewebTwo }}</span>
+    <span class="valid" ng-show="myForm.inputaddress.$valid">{{ vm.messagewebOK }}</span>
   
+  <button ng-click = "incrementByOne()">Submit</button>
+    <p ng-click = "incrementByOne()"> {{ vm.message }}</p>
+</form>
 </div>

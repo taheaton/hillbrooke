@@ -4,12 +4,13 @@ let UserService = function(PARSE, $http, $cookies, $state) {
   this.login     = login;
   this.storeAuth = storeAuth;
   this.checkAuth = checkAuth;
+  this.logout = logout;
 
   function storeAuth (user) {
     $cookies.put('hillbrooke-auth', user.sessionToken);
     $cookies.put('hillbrooke-user', user.objectId);
-   $cookies.put('hillbrooke-name', user.username);
-   $cookies.put('hillbrooke-email', user.email);
+    $cookies.put('hillbrooke-name', user.username);
+    $cookies.put('hillbrooke-email', user.email);
 
     setHeaders(user.sessionToken);
     // THIS REALLY NEEDS TO BE BETTER!!!
@@ -43,6 +44,14 @@ let UserService = function(PARSE, $http, $cookies, $state) {
       params: userObj
     });
   }
+  function logout () {
+    $cookies.remove('hillbrooke-auth');
+    $cookies.remove('hillbrooke-name');
+    $cookies.remove('hillbrooke-user');
+    
+    PARSE.CONFIG.headers['X-Parse-Session-Token'] = null;
+    $state.go('root.login');
+  };
   
 
 };

@@ -1,11 +1,14 @@
 // Put any @imports here
 // See Readme for a list of supported ones
 @import "foundation";
+@import "font-awesome";
+
 
 //green
 $accent-color1: #196534;
 //tan
 $accent-color2: #EEE8CD;
+
 $accent-color3: black;
 //light blue
 $accent-color4: #e2ebf3;
@@ -13,11 +16,24 @@ $accent-color4: #e2ebf3;
 $font-title: 'Droid Serif', serif;
 $font-content: 'Lora', serif;
 
-
 html {
 }
+
 body {
   background: $accent-color2;
+}
+
+a {
+  color: $accent-color1;
+  font-family: $font-content;
+}
+hr {
+  border: 1px solid $accent-color1;
+  margin-right: 3rem;
+}
+h5 {
+  font-family: $font-content;
+  color: $accent-color1;
 }
 
 //layout
@@ -25,7 +41,6 @@ body {
   .top-bar {
     background: $accent-color1;
     height: 6.5rem;
-
   }
   .top-bar-section li:not(.has-form) a:not(.button) {
     background: $accent-color1;
@@ -36,21 +51,24 @@ body {
     border-radius: 1.5rem;
     border:  0.1rem solid $accent-color2;
     margin-top: 1.75rem;
-    margin-right: 1.875rem;
+    margin-right: 2.875rem;
+    text-align: center;
   }
   .top-bar-section ul li {
       background: $accent-color1;
   }
   .hBird img{
-    height: 6.5rem;
+    height: 6.0rem;
   }
-  .hText h2{
-    margin-right: 25rem;
-    height: 5.8rem;
+  .hBird a{
     color: white;
     font-family: $font-title;
-    float: left;
     font-size: 48pt;
+  }
+  .fa {
+    color: $accent-color2;
+    font-size: 48pt;
+    margin: 15pt;
   }
   //side nav
   .side-nav {
@@ -65,8 +83,7 @@ body {
     width: 9rem;
     background: white;
     position: fixed;
-
-}
+  }
   .side-nav li a:not(.button) {
     color: #008CBA;
     display: inline-block;
@@ -74,43 +91,148 @@ body {
     padding: 0.4375rem 0.875rem;
     color: $accent-color1;
     width: 9rem;
-}
-.side-nav li.active > a:first-child:not(.button) {
+  }
+  .side-nav li.active > a:first-child:not(.button) {
     color: red;
     font-family: $font-content;   
     font-weight: normal;
-}
+  }
+  footer {
+    color: white;
+    background-color: $accent-color1;
+    text-align: center;
+    font-family: $font-content;
+  }
+  footer p{
+  }
+  footer a{
+    color: $accent-color2;
+  }
 //home template
   .home{
     display: inline-block;
     margin-left: 13rem;
-    margin-top: 1rem;
+    //margin-top: 1rem;
     font-family: $font-content;
     margin-right: 3rem;
   }
   .home h3{
     font-family: $font-content;
   }
+  .home {
+    position: relative;
+  }
+  .home p{
+    font-size: 12pt;
+  }
 
- 
-
-  //login template
+//login template
   .login{
     display: inline-block;
-    margin-left: 13rem;
+    margin-left: 23rem;
     margin-top: 1rem;
+    width: 32rem;
   }
-    //signup template
+  .login h3{
+    font-family: $font-content;
+  }
+  .login button{
+    color: $accent-color1;
+    background: $accent-color2;
+    font-family: $font-content;
+    font-size: 1rem;
+    max-width: 9.2rem;
+    vertical-align: middle;
+    border-radius: 1.5rem;
+    border:  0.1rem solid $accent-color1;
+    margin-left: 5rem;
+  }
+  .login button:hover{
+    color: $accent-color2;
+    background: $accent-color1;
+    border:  0.1rem solid $accent-color1;
+  }
+  .login a{
+    color: $accent-color1;
+  }
+  .login a:hover{
+    color: $accent-color2;
+  }
+  
+//signup template
   .signup{
     display: inline-block;
     margin-left: 13rem;
     margin-top: 1rem;
   }
-      //content template
-  .content h2{
-    display: inline-block;
+  
+//content template
+  .content {
     margin-left: 13rem;
-    margin-top: 1rem;
-    font-size: 36pt;
+  }
+  .content h3, h4, p{
+    display: inline-block;
+    margin-right: 3rem;
     font-family: $font-content;
   }
+  .content h3 {
+    margin-top: 1rem;
+  }
+  .links {
+    padding: 0.875rem 0;
+    border: 0.25rem solid $accent-color1;
+    border-radius: 1.5rem;
+    background: white;
+    //position: fixed;
+    //margin-top: 0.625rem;
+    width: 62rem;
+    text-align: center;
+  }
+  .links a{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    
+  }
+  //board template
+  .logged {
+    float: right;
+    font-size: 75%;
+  }
+  .board {
+    margin-left: 13rem;
+  }
+  .board h3, h4, p{
+    display: inline-block;
+    margin-right: 3rem;
+    font-family: $font-content;
+  }
+  .board h3 {
+    margin-top: 1rem;
+  }
+  //signup template
+  .signup {
+    width: 40rem;
+    margin-left: 21rem;
+    font-family: $font-content;
+  }
+  .signup hr{
+    width: 40rem;
+  }
+  .signup button{
+    color: $accent-color2;
+    background: $accent-color1;
+    font-family: $font-content;
+    font-size: 1rem;
+    max-width: 9.2rem;
+    vertical-align: middle;
+    border-radius: 1.5rem;
+    border:  0.1rem solid $accent-color2;
+    
+  }
+  .signup button:hover{
+    color: $accent-color1;
+    background: $accent-color2;
+    border:  0.1rem solid $accent-color1;
+  }
+
+

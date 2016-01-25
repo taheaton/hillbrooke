@@ -57,7 +57,7 @@ var _servicesContentService2 = _interopRequireDefault(_servicesContentService);
 // import UploadService from './services/upload.service';
 // import MainService from './services/maintenance.service';
 
-// import carItem from './directives/car.directive';
+//import contentItem from './directives/content.directive';
 // import addImage from './directives/addImage.directive';
 
 _angular2['default'].module('app.content', ['app.core']).controller('ContentController', _controllersContentController2['default'])
@@ -67,10 +67,10 @@ _angular2['default'].module('app.content', ['app.core']).controller('ContentCont
 
 // .service('UploadService', UploadService)
 // .service('MainService', MainService)
-// .directive('carItem', carItem)
+// .directive('contentItem', contentItem)
 // .directive('addImage', addImage)
 
-},{"../app-core/index":6,"./controllers/content.controller":1,"./services/content.service":3,"angular":18}],3:[function(require,module,exports){
+},{"../app-core/index":6,"./controllers/content.controller":1,"./services/content.service":3,"angular":20}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -174,13 +174,18 @@ var config = function config($stateProvider, $urlRouterProvider) {
     controller: 'HomeController as vm',
     templateUrl: 'templates/app-layout/home.tpl.html'
   })
-  // My Cars
+  // Content
   .state('root.content', {
     url: '/content',
     controller: 'ContentController as vm',
     templateUrl: 'templates/app-content/content.tpl.html'
   })
-
+  // Board
+  .state('root.board', {
+    url: '/board',
+    //controller: 'BoardController as vm',
+    templateUrl: 'templates/app-content/board.tpl.html'
+  })
   // Signup
   .state('root.signup', {
     url: '/signup',
@@ -244,7 +249,7 @@ var _constantsParseConstant2 = _interopRequireDefault(_constantsParseConstant);
 
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('PARSE', _constantsParseConstant2['default']).run(_run2['default']);
 
-},{"./config":4,"./constants/parse.constant":5,"./run":7,"angular":18,"angular-cookies":20,"angular-ui-router":16}],7:[function(require,module,exports){
+},{"./config":4,"./constants/parse.constant":5,"./run":7,"angular":20,"angular-cookies":22,"angular-ui-router":18}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -268,7 +273,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-var HomeController = function HomeController(PARSE, $scope, $timeout, $cookies) {
+var HomeController = function HomeController(PARSE, $scope, $timeout, $cookies, UserService) {
 
     console.log(PARSE);
 
@@ -287,8 +292,12 @@ var HomeController = function HomeController(PARSE, $scope, $timeout, $cookies) 
     //     console.log(res);
     //   });
     //};
+    $scope.logout = function logout() {
+        UserService.logout();
+        console.log(logout);
+    };
 
-    var INTERVAL = 6000,
+    var INTERVAL = 50000,
         slides = [{ id: "image00", src: "./images/cover.jpg" }, { id: "image01", src: "./images/kids.jpg" }, { id: "image02", src: "./images/party.jpg" }, { id: "image03", src: "./images/sign.jpg" }, { id: "image04", src: "./images/swimteam.jpg" }, { id: "image05", src: "./images/tennis.jpg" }];
 
     function setCurrentSlideIndex(index) {
@@ -315,7 +324,7 @@ var HomeController = function HomeController(PARSE, $scope, $timeout, $cookies) 
 
     loadSlides();
 };
-HomeController.$inject = ['PARSE', '$scope', '$timeout', '$cookies'];
+HomeController.$inject = ['PARSE', '$scope', '$timeout', '$cookies', 'UserService'];
 
 exports['default'] = HomeController;
 module.exports = exports['default'];
@@ -337,9 +346,34 @@ var _servicesPictureService = require('./services/picture.service');
 
 var _servicesPictureService2 = _interopRequireDefault(_servicesPictureService);
 
-_angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']).service('PictureService', _servicesPictureService2['default']);
+var _servicesLogoutService = require('./services/logout.service');
 
-},{"./controllers/home.controller":8,"./services/picture.service":10,"angular":18}],10:[function(require,module,exports){
+var _servicesLogoutService2 = _interopRequireDefault(_servicesLogoutService);
+
+_angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']).service('PictureService', _servicesPictureService2['default']).service('LogoutService', _servicesLogoutService2['default']);
+
+},{"./controllers/home.controller":8,"./services/logout.service":10,"./services/picture.service":11,"angular":20}],10:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var LogoutService = function LogoutService(PARSE, $http, $cookies, $state) {
+
+  this.logout = logout;
+  function logout() {
+    $cookies.remove('hillbrooke-auth');
+    PARSE.CONFIG.headers['X-Parse-Session-Token'] = null;
+    $state.go('root.home');
+  };
+};
+
+LogoutService.$inject = ['PARSE', '$http', '$cookies', '$state'];
+
+exports['default'] = LogoutService;
+module.exports = exports['default'];
+
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -373,7 +407,7 @@ PictureService.$inject = ['$http', 'PARSE'];
 exports['default'] = PictureService;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -397,31 +431,49 @@ LoginController.$inject = ['UserService'];
 exports['default'] = LoginController;
 module.exports = exports['default'];
 
-},{}],12:[function(require,module,exports){
-'use strict';
+},{}],13:[function(require,module,exports){
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var SignupController = function SignupController(UserService) {
+var SignupController = function SignupController(ContactService) {
 
   var vm = this;
-  this.title = 'Signup Page';
-  vm.signUp = signUp;
+  vm.messagename = "* Name is Required";
+  vm.messagenameOK = "";
 
-  function signUp(user) {
-    UserService.signup(user).then(function (res) {
-      UserService.storeAuth(res.data);
+  vm.messageemailOne = "* Email is a Required Field";
+  vm.messageemailTwo = "Please provide a valid email address";
+  //  vm.messageemailOK = "Thank you for providing your email.  We will contact you soon!";
+  vm.messagepasswordOne = "Password must be at least 6 characters";
+
+  vm.messagewebOne = "* Street Address is required";
+  vm.messagewebTwo = "";
+  //vm.messagewebOK = "Thank you for providing your web address.";
+
+  // vm.messagemessageOne = "Kindly provide your comments";
+  // vm.messagemessageOK = "Thank you for providing your comments.";
+
+  vm.message = "";
+  vm.count = 0;
+
+  vm.addContact = addContact;
+
+  function addContact(ContactObj) {
+    ContactService.addContact(ContactObj).then(function (res) {
+      console.log(res);
+      vm.message = vm.count === 1 ? "Thank you for your submission.  We will contact you soon!" : "Thank you for your interest!  We will send an email once residency is verified.";
     });
   }
 };
 
-SignupController.$inject = ['UserService'];
+SignupController.$inject = ['ContactService'];
 
-exports['default'] = SignupController;
-module.exports = exports['default'];
+exports["default"] = SignupController;
+module.exports = exports["default"];
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -442,9 +494,49 @@ var _servicesUserService = require('./services/user.service');
 
 var _servicesUserService2 = _interopRequireDefault(_servicesUserService);
 
-_angular2['default'].module('app.user', ['app.core']).controller('SignupController', _controllersSignupController2['default']).controller('LoginController', _controllersLoginController2['default']).service('UserService', _servicesUserService2['default']);
+var _servicesContactService = require('./services/contact.service');
 
-},{"./controllers/login.controller":11,"./controllers/signup.controller":12,"./services/user.service":14,"angular":18}],14:[function(require,module,exports){
+var _servicesContactService2 = _interopRequireDefault(_servicesContactService);
+
+_angular2['default'].module('app.user', ['app.core']).controller('SignupController', _controllersSignupController2['default']).controller('LoginController', _controllersLoginController2['default']).service('UserService', _servicesUserService2['default']).service('ContactService', _servicesContactService2['default']);
+
+},{"./controllers/login.controller":12,"./controllers/signup.controller":13,"./services/contact.service":15,"./services/user.service":16,"angular":20}],15:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var ContactService = function ContactService($http, PARSE) {
+
+  var url = PARSE.URL + 'classes/Contact';
+
+  this.getAllContacts = getAllContacts;
+  this.addContact = addContact;
+
+  function Contact(ContactObj) {
+    this.name = ContactObj.name;
+    this.username = ContactObj.username;
+    this.password = ContactObj.password;
+    this.email = ContactObj.email;
+    this.address = ContactObj.address;
+  }
+
+  function getAllContacts() {
+    return $http.get(url, PARSE.CONFIG);
+  }
+
+  function addContact(ContactObj) {
+    var c = new Contact(ContactObj);
+    return $http.post(url, c, PARSE.CONFIG);
+  }
+};
+
+ContactService.$inject = ['$http', 'PARSE'];
+
+exports['default'] = ContactService;
+module.exports = exports['default'];
+
+},{}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -456,6 +548,7 @@ var UserService = function UserService(PARSE, $http, $cookies, $state) {
   this.login = login;
   this.storeAuth = storeAuth;
   this.checkAuth = checkAuth;
+  this.logout = logout;
 
   function storeAuth(user) {
     $cookies.put('hillbrooke-auth', user.sessionToken);
@@ -495,6 +588,14 @@ var UserService = function UserService(PARSE, $http, $cookies, $state) {
       params: userObj
     });
   }
+  function logout() {
+    $cookies.remove('hillbrooke-auth');
+    $cookies.remove('hillbrooke-name');
+    $cookies.remove('hillbrooke-user');
+
+    PARSE.CONFIG.headers['X-Parse-Session-Token'] = null;
+    $state.go('root.login');
+  };
 };
 
 UserService.$inject = ['PARSE', '$http', '$cookies', '$state'];
@@ -502,7 +603,7 @@ UserService.$inject = ['PARSE', '$http', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 // Import our core files
 'use strict';
 
@@ -524,7 +625,7 @@ require('./app-user/index');
 
 _angular2['default'].module('app', ['app.core', 'app.layout', 'app.content', 'app.user']);
 
-},{"./app-content/index":2,"./app-core/index":6,"./app-layout/index":9,"./app-user/index":13,"angular":18}],16:[function(require,module,exports){
+},{"./app-content/index":2,"./app-core/index":6,"./app-layout/index":9,"./app-user/index":14,"angular":20}],18:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -4895,7 +4996,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -33914,11 +34015,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":17}],19:[function(require,module,exports){
+},{"./angular":19}],21:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -34241,11 +34342,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":19}]},{},[15])
+},{"./angular-cookies":21}]},{},[17])
 
 
 //# sourceMappingURL=main.js.map

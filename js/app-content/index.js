@@ -9,7 +9,7 @@ import '../app-core/index';
 // import UploadService from './services/upload.service';
 // import MainService from './services/maintenance.service';
 
-// import carItem from './directives/car.directive';
+ //import contentItem from './directives/content.directive';
 // import addImage from './directives/addImage.directive';
 
 angular
@@ -20,6 +20,6 @@ angular
    .service('ContentService', ContentService)
   // .service('UploadService', UploadService)
   // .service('MainService', MainService)
-  // .directive('carItem', carItem)
+  // .directive('contentItem', contentItem)
   // .directive('addImage', addImage)
 ;

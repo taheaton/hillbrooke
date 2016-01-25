@@ -1,4 +1,4 @@
-let HomeController = function(PARSE, $scope, $timeout, $cookies) {
+let HomeController = function(PARSE, $scope, $timeout, $cookies, UserService) {
 
   console.log(PARSE);
 
@@ -18,9 +18,12 @@ let HomeController = function(PARSE, $scope, $timeout, $cookies) {
   //     console.log(res);
   //   });
   //};
+  $scope.logout = function logout() {
+    UserService.logout();
+    console.log(logout);
+  };
 
-
-  var INTERVAL = 6000,
+  var INTERVAL = 50000,
         slides = [{id:"image00", src:"./images/cover.jpg"},
         {id:"image01", src:"./images/kids.jpg"},
         {id:"image02", src:"./images/party.jpg"},
@@ -54,6 +57,6 @@ let HomeController = function(PARSE, $scope, $timeout, $cookies) {
 
     loadSlides();
 };
-HomeController.$inject = ['PARSE', '$scope', '$timeout', '$cookies'];
+HomeController.$inject = ['PARSE', '$scope', '$timeout', '$cookies', 'UserService'];
 
 export default HomeController;

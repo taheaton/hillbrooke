@@ -20,13 +20,18 @@ let config = function($stateProvider, $urlRouterProvider) {
       controller: 'HomeController as vm',
       templateUrl: 'templates/app-layout/home.tpl.html'
     })
-    // My Cars
+    // Content
     .state('root.content', {
       url: '/content',
       controller: 'ContentController as vm',
       templateUrl: 'templates/app-content/content.tpl.html'
     })
-
+    // Board
+    .state('root.board', {
+      url: '/board',
+      //controller: 'BoardController as vm',
+      templateUrl: 'templates/app-content/board.tpl.html'
+    })
     // Signup
     .state('root.signup', {
       url: '/signup',

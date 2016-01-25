@@ -1,21 +1,25 @@
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class = "hBird">
-      <a href = "#/home"><img src = "images/hillbrooke logo.jpg"></a>
+      <a href = "#/home"><img src = "images/hillbrooke logo.jpg">Hillbrooke</a>
     </li>
+   
+
     
   </ul>
   <section class="top-bar-section">
     <ul class="right">
-      <li class = "hText">
-        <h2>Hillbrooke</h2>
-      </li>
+      
       <li>
         <a ng-if = "vm.user != 'Guest'" href = "#/content">Residents Only</a>
         <a ng-if = "vm.user === 'Guest'" href = "#/login">Residents Only</a>
       </li>
+      <li>
+        <a href = "#/signup">Access Request</a>
+      </li>
       
-      <li><a href="#/signup">Request Access</a></li>
+        <a class = "fb" href = "https://www.facebook.com/groups/337111652985682/"><i class="fa fa-facebook-square"></i></a>
+      
     </ul>
   </section>
 </nav>
@@ -33,3 +37,5 @@
 
 
 <section class="container" ui-view></section>
+<br><br><br><footer><p>Hillbrooke Community, Johns Creek, GA  |  <a href="mailto:thomasaheaton@gmail.com">     Email Webmaster</a></p></footer>
+    
